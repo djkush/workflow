@@ -1,0 +1,23 @@
+{
+  "name": "cite-workflow",
+  "version": "0.1.0",
+  "authors": [
+    "Duncan Kendrick <duncan.kendrick@cite.co.uk>"
+  ],
+  "description": "Bare bones workflow for web development. Includes all front end JS/CSS etc",
+  "moduleType": [
+    "global"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "modernizr-min": "~2.8.3",
+    "susy": "~2.2.5"
+  }
+}

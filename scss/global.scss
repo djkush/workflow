@@ -1,0 +1,5 @@
+body {
+	@include container(80em);
+	background-color: pink;
+}
+nav { @include span(25%); }
