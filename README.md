@@ -21,5 +21,11 @@ Checkout repo
 ```
 git clone https://github.com/djkush/workflow.git <project-name>
 ```
-Install project dependencies
+Install development dependencies with NPM
+```
+npm update
+```
+Install front end dependencies with Bower
+```
+bower update
 ```
