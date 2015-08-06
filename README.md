@@ -29,3 +29,8 @@ Install front end dependencies with Bower
 ```
 bower install
 ```
+
+
+## Project notes
+
+* Modernizr should be custom built on a per project bases, only featuring the tests that the website need to test for. The version supplied includes all tests and should **not be used on production sites***.

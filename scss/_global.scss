@@ -1,0 +1,11 @@
+body {
+	//@include container(80em);
+	background-color: blue;
+}
+* {
+// @include span(25%);
+ color:#fff; }
+
+
+ body { @include container(80em); }
+nav { @include span(25%); background-color: red; }

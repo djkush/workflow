@@ -1,4 +1,4 @@
-var bob = function(){
-	var beep = "bop";
-	var cock = beep;
-};
+//var bob = function(){
+//	var beep = "bops";
+//};
+

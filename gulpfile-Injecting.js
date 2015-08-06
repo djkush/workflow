@@ -13,12 +13,11 @@ var autoprefixer = require('gulp-autoprefixer');
 var minifycss    = require('gulp-minify-css');
 var rename 		 = require('gulp-rename');
 var notify       = require('gulp-notify');
-var jshint       = require('gulp-jshint');
-var uglify       = require('gulp-uglify');
-var concat       = require('gulp-concat');
+
+
 
 // Proxy Server + watching scss/html files
-gulp.task('watch', ['sass'], function() {
+gulp.task('serve', ['sass'], function() {
 
     browserSync.init({
     	files: "css/**/*.css",
@@ -27,9 +26,6 @@ gulp.task('watch', ['sass'], function() {
 
     gulp.watch("scss/*.scss", ['sass']);
     gulp.watch("*.html").on('change', browserSync.reload);
-
-    gulp.watch('js/dev/*.js', ['scripts']); // watch scripts dev folder and compress/move/etc if changes    
-    gulp.watch(['js/*.js']).on('change', browserSync.reload); // reload browser if new js appears
 });
 
 // Compile sass into CSS & auto-inject into browsers
@@ -48,9 +44,20 @@ gulp.task('sass', function() {
 
 
 
-
 // Scripts
 gulp.task('scripts', function() {
+    
+    // move Jquery to JS folder
+    gulp.src('bower_components/Old-IE-Fixes/IE7-8Fixes.js')
+    .pipe(gulp.dest('js'))
+    .pipe(notify({ message: 'IE7-8 fixed added' }));
+
+    // move Jquery to JS folder
+    gulp.src('bower_components/jquery/dist/jquery.min.js')
+    .pipe(gulp.dest('js'))
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(uglify())
+    .pipe(gulp.dest('js'));
 
     // finally merge, minify, lint and move any JS in the dev folder
     return gulp.src('js/dev/*.js')
@@ -65,25 +72,6 @@ gulp.task('scripts', function() {
 
 
 
-// Build task
-gulp.task('build', function() {
-
-    // move Jquery to JS folder
-    gulp.src('bower_components/Old-IE-Fixes/IE7-8Fixes.js')
-    .pipe(notify({ title: 'Adding project dependencies...', message: '' }))
-    .pipe(gulp.dest('js'))
-    .pipe(notify({ title: 'Adding project dependencies...', message: 'IE7-8 fixed added' }));
-
-    // move Jquery to JS folder
-    return gulp.src('bower_components/jquery/dist/jquery.min.js')
-    .pipe(gulp.dest('js'))
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(uglify())
-    .pipe(gulp.dest('js'))
-    .pipe(notify({ title: 'Adding project dependencies...', message: 'JQuery added' }));
-
-});
 
 
-gulp.task('default', ['watch']);
-
+gulp.task('default', ['serve']);
