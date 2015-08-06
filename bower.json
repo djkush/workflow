@@ -9,19 +9,18 @@
     "global"
   ],
   "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
   "dependencies": {
     "modernizr-min": "~2.8.3",
-    "susy": "~2.2.5"
-  },
-  "devDependencies": {
+    "susy": "~2.2.5",
     "jquery": "~2.1.4",
-    "Old-IE-Fixes": "*"
-  }
+    "Old-IE-Fixes": "*"    
+  },
+  "overrides": {
+        "susy": {
+            "ignore": true
+        },
+        "jquery": {
+            "ignore": true
+        },         
+    }
 }

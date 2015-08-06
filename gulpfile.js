@@ -16,6 +16,10 @@ var notify       = require('gulp-notify');
 var jshint       = require('gulp-jshint');
 var uglify       = require('gulp-uglify');
 var concat       = require('gulp-concat');
+var merge2       = require('merge2');
+var bowerMain    = require('bower-main');
+var bowerMainJavaScriptFiles = bowerMain('js','min.js');
+
 
 // Proxy Server + watching scss/html files
 gulp.task('watch', ['sass'], function() {
@@ -49,10 +53,10 @@ gulp.task('sass', function() {
 
 
 
-// Scripts
+// Cutom JS Scripts
 gulp.task('scripts', function() {
 
-    // finally merge, minify, lint and move any JS in the dev folder
+    // merge, minify, lint and move any JS in the dev folder
     return gulp.src('js/dev/*.js')
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('jshint-stylish'))
@@ -68,20 +72,29 @@ gulp.task('scripts', function() {
 // Build task
 gulp.task('build', function() {
 
-    // move Jquery to JS folder
+    // move and compress Old IE Fixes
     gulp.src('bower_components/Old-IE-Fixes/IE7-8Fixes.js')
     .pipe(notify({ title: 'Adding project dependencies...', message: '' }))
-    .pipe(gulp.dest('js'))
-    .pipe(notify({ title: 'Adding project dependencies...', message: 'IE7-8 fixed added' }));
-
-    // move Jquery to JS folder
-    return gulp.src('bower_components/jquery/dist/jquery.min.js')
     .pipe(gulp.dest('js'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
     .pipe(gulp.dest('js'))
-    .pipe(notify({ title: 'Adding project dependencies...', message: 'JQuery added' }));
+    .pipe(notify({ title: 'Adding project dependencies...', message: 'IE7-8 fixed added' }));
 
+    // move Jquery to JS folder
+    gulp.src('bower_components/jquery/dist/jquery.min.js')
+    .pipe(gulp.dest('js'))
+    .pipe(notify({ title: 'Adding project dependencies...', message: 'jQuery CDN fallback' }));
+
+    return merge2(
+        gulp.src(bowerMainJavaScriptFiles.minified),
+        gulp.src(bowerMainJavaScriptFiles.minifiedNotFound)
+          .pipe(concat('tmp.min.js'))
+          .pipe(uglify())        
+          .pipe(notify({ title: 'Adding project dependencies...', message: 'Vendor plugins' }))
+    )
+    .pipe(concat('plugins.min.js'))
+    .pipe(gulp.dest('js'));   
 });
 
 
