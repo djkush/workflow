@@ -1,5 +1,12 @@
 body {
-  background-color: blue; }
+  max-width: 80em;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fff; }
+  body:after {
+    content: " ";
+    display: block;
+    clear: both; }
 
 * {
   color: #fff; }
@@ -17,11 +24,4 @@ nav {
   width: 25%;
   float: left;
   margin-right: 5.26316%;
-  background-color: red; }
-
-body {
-  background-color: grey;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex; }
+  background-color: #999; }

@@ -16,9 +16,10 @@ var notify       = require('gulp-notify');
 var jshint       = require('gulp-jshint');
 var uglify       = require('gulp-uglify');
 var concat       = require('gulp-concat');
-var del          = require('del');
-var cache        = require('gulp-cache');
-var imagemin     = require('gulp-imagemin');
+var merge2       = require('merge2');
+var bowerMain    = require('bower-main');
+var bowerMainJavaScriptFiles = bowerMain('js','min.js');
+
 
 // Proxy Server + watching scss/html files
 gulp.task('watch', ['sass'], function() {
@@ -29,16 +30,10 @@ gulp.task('watch', ['sass'], function() {
     });    
 
     gulp.watch("scss/*.scss", ['sass']);
-   
     gulp.watch("*.html").on('change', browserSync.reload);
 
-    gulp.watch('js/dev/**/*.js', ['scripts']); // watch scripts dev folder and compress/move/etc if changes    
+    gulp.watch('js/dev/*.js', ['scripts']); // watch scripts dev folder and compress/move/etc if changes    
     gulp.watch(['js/*.js']).on('change', browserSync.reload); // reload browser if new js appears
-
-   
-    gulp.watch('img/dev/*', ['images']); // Watch image files and compress if changed
-    gulp.watch(['img/*']).on('change', browserSync.reload); // reload browser if new imgs appear
-
 });
 
 // Compile sass into CSS & auto-inject into browsers
@@ -51,13 +46,14 @@ gulp.task('sass', function() {
   		.pipe(minifycss())
 		.pipe(gulp.dest("css"))
         .pipe(browserSync.stream())		
-        .pipe(notify({ message: 'SASS task complete' }));        
+        .pipe(notify({ message: 'SASS task complete' }));
+        
 });
 
 
 
 
-// Custom JS Scripts
+// Cutom JS Scripts
 gulp.task('scripts', function() {
 
     // merge, minify, lint and move any JS in the dev folder
@@ -73,11 +69,8 @@ gulp.task('scripts', function() {
 
 
 
-// Generate scripts task
-gulp.task('generateScripts', function() {
-
-    // Delete old scripts from JS folder
-    //   del(['js/*']);
+// Build task
+gulp.task('build', function() {
 
     // move and compress Old IE Fixes
     gulp.src('bower_components/Old-IE-Fixes/IE7-8Fixes.js')
@@ -93,33 +86,17 @@ gulp.task('generateScripts', function() {
     .pipe(gulp.dest('js'))
     .pipe(notify({ title: 'Adding project dependencies...', message: 'jQuery CDN fallback' }));
 
-    // Combine plugins and custom JS 
-    gulp.src('js/dev/plugins/*.js')
-    .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter('jshint-stylish'))
-    .pipe(concat('plugins.js'))
-    .pipe(gulp.dest('js/dev'))
-    .pipe(notify({ title: 'Adding project dependencies...', message: 'Plugins & custom JS generated in main.js'  }));
-
+    return merge2(
+        gulp.src(bowerMainJavaScriptFiles.minified),
+        gulp.src(bowerMainJavaScriptFiles.minifiedNotFound)
+          .pipe(concat('tmp.min.js'))
+   //       .pipe(uglify())        
+          .pipe(notify({ title: 'Adding project dependencies...', message: 'Vendor plugins' }))
+    )
+    .pipe(concat('plugins.min.js'))
+    .pipe(gulp.dest('js'));   
 });
 
 
+gulp.task('default', ['watch']);
 
-// Images
-gulp.task('images', function() {
-
-  // Delete old images from IMG folder
-  // del(['img/*']);
-
-  return gulp.src('img/dev/**/*')
-    .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
-    .pipe(gulp.dest('img'))
-    .pipe(notify({ message: 'Images task complete' }));
-});
-
-
-
-// Build Task
-gulp.task('build', ['generateScripts'], function() {
-    gulp.start('sass', 'images', 'scripts');
-});

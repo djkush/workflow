@@ -13,14 +13,16 @@
     "modernizr-min": "~2.8.3",
     "susy": "~2.2.5",
     "jquery": "~2.1.4",
-    "Old-IE-Fixes": "*"    
+    "Old-IE-Fixes": "*",
+    "FlexSlider": "~2.5.0",
+    "skippr": "~1.2.0"
   },
   "overrides": {
-        "susy": {
-            "ignore": true
-        },
-        "jquery": {
-            "ignore": true
-        },         
+    "susy": {
+      "ignore": true
+    },
+    "jquery": {
+      "ignore": true
     }
+  }
 }
