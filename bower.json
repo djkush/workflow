@@ -14,8 +14,7 @@
     "susy": "~2.2.5",
     "jquery": "~2.1.4",
     "Old-IE-Fixes": "*",
-    "FlexSlider": "~2.5.0",
-    "skippr": "~1.2.0"
+    "rebase-reset-scss": "https://gist.github.com/f7a197adff86558d1451.git"
   },
   "overrides": {
     "susy": {

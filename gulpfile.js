@@ -16,9 +16,9 @@ var notify       = require('gulp-notify');
 var jshint       = require('gulp-jshint');
 var uglify       = require('gulp-uglify');
 var concat       = require('gulp-concat');
-var del          = require('del');
 var cache        = require('gulp-cache');
 var imagemin     = require('gulp-imagemin');
+var svg2png      = require('gulp-svg2png');
 
 // Proxy Server + watching scss/html files
 gulp.task('watch', ['sass'], function() {
@@ -76,9 +76,6 @@ gulp.task('scripts', function() {
 // Generate scripts task
 gulp.task('generateScripts', function() {
 
-    // Delete old scripts from JS folder
-    //   del(['js/*']);
-
     // move and compress Old IE Fixes
     gulp.src('bower_components/Old-IE-Fixes/IE7-8Fixes.js')
     .pipe(notify({ title: 'Adding project dependencies...', message: '' }))
@@ -108,8 +105,9 @@ gulp.task('generateScripts', function() {
 // Images
 gulp.task('images', function() {
 
-  // Delete old images from IMG folder
-  // del(['img/*']);
+  gulp.src('img/dev/**/*.svg')
+    .pipe(cache(svg2png()))
+    .pipe(gulp.dest('img'));
 
   return gulp.src('img/dev/**/*')
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))

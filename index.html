@@ -26,10 +26,66 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <!-- Add your site or application content here -->
-        <nav>
-        <p>Hello world! This is ssss .asdsddsas</p>
-        </nav>
+        <section class="demo">
+
+            <div class="box message1">
+                <h1>Workflow v1</h1>
+                <p>A skeleton framework for modern web development
+                <small>Written by <a href="http://www.dkendrick.co.uk">Duncan Kendrick</a></small></p>
+            </div>
+            
+            <div class="box message2">
+                <h2>Features</h2>
+
+                
+                <p><strong>Gulp scripts</strong></p>
+                <ul class="list">
+                    <li>SCSS compiling
+                    <small>Uses <a href="http://www.sitepoint.com/switching-ruby-sass-libsass/">Libsass insead of Node Sass for speed</a>.</small></li>
+                    <li>Auto vendor prefixing
+                    <small>Uses the <a href="http://caniuse.com/">Can I Use</a> to automagically add last 2 versions of vendor prefixes. </small></li>
+                    <li>CSS &amp; JS file concatenating
+                    <small>Combines custom JS &amp; plugins in to a single file to minimise requests to server. Ditto for CSS.</small></li>
+                    <li>CSS &amp; JS minifying
+                    <small>Creates .min versions for including in production.</small></li>
+                    <li>JS linting
+                    <small>Shows JS errors in console using <a href="https://github.com/jshint/jshint">jshint</a>. Prettifies output using <a href="https://github.com/sindresorhus/jshint-stylish">jshint-stylish</a></small></li>
+                    <li>Image compression
+                    <small>Automatically minifies PNG, JPEG, GIF and SVG images</small></li>
+                    <li>Creates PNG versions of SVG files
+                    <small>Used in conjunction with Old-IE-Fixes, this ensures IE&lt;9 falls back to PNGs with no additional work.</small></li>
+                    <li>Browser Sync
+                    <small>Auto reloads web pages and propagates over network for multi device testing.</small></li>
+                </ul>
+                
+                <p><strong>Bower</strong></p>
+                <p>Installs front end dependancies with ease. Default install includes...</p>
+                <ul class="list">
+                    <li>Susy
+                    <small>Lightweight CSS grid framework. Just does grids, no extra fluff.</small></li>
+                    <li>Normalize.css
+                    <small>As included in HTML5 Boilerplate.</small></li>
+                    <li>Modernizr - dev version
+                    <small>Full dev build for development only. <a href="http://v3.modernizr.com/download/">Customise your build</a> for production. </small></li>
+                    <li>jQuery
+                    <small>By default use the CDN. This provides a fallback.</small>
+                    </li>
+                    <li>Old-IE-Fixes - fixes/shims for IE &lt; 9
+                    <small>A collection of shims I&rsquo;ve bundled together to enable feature support in IE.</small></li>
+                </ul>
+                <p><strong>Susy &amp; Basic CSS</strong></p>
+                <p>I have created a very basic skeleton file structure as a jumping off point for writing your project CSS. It&rsquo;s tied in to Susy but can be used independantly or just removed altogether. Everyone like to organise thier project differently, this is just the way it works for me. Here's a breakdown of what each SCSS file does...</p>
+                <ul class="filesList">
+                    <li><code>project.scss</code></li>
+                </ul>
+            </div>
+            <div class="box message3">
+                <h2>How to run</h2>            
+            </div>         
+
+        </section>
+
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/jquery-min.js"><\/script>')</script>
         <script src="js/main.js"></script>

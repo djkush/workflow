@@ -21,7 +21,6 @@
     "bower": "^1.4.1",
     "bower-main": "^0.2.14",
     "browser-sync": "^2.8.2",
-    "del": "^1.2.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^2.3.1",
     "gulp-cache": "^0.2.10",
@@ -32,6 +31,7 @@
     "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.0.4",
+    "gulp-svg2png": "^0.3.0",
     "gulp-uglify": "^1.2.0",
     "jshint-stylish": "^2.0.1"
   }
