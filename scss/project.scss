@@ -1,11 +1,11 @@
-@import "../bower_components/normalize.css/normalize.css"; // https://github.com/necolas/normalize.css
+// PROJECT VARIABLES
+
+$bodyFont : sans-serif;
+$bodyTextColor : #333333;
+$bodyLinkColor : #496fba;
+@import "../bower_components/rebase-reset-scss/rebase"; // Include custom reset (uses SASS variables above)
+
 @import "../bower_components/susy/sass/susy"; // include Susy framework
-
-
-// VARIABLES
-
-$bodyTextColor : #222;
-
 // Susy defaults - http://susydocs.oddbird.net/en/latest/settings/#global-defaults
 $susy: (
   gutter-position: inside,
