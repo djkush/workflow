@@ -12,8 +12,10 @@ Compressing image assets
 Browser Sync
 
 Includes Bower for...
-Susy CSS framework
+Susy CSS framework (optional)
 Modernizr
+Old IE Fixes (https://github.com/kush1960/Old-IE-Fixes)
+Rebase - custom CSS reset/normalize (https://gist.github.com/kush1960/f7a197adff86558d1451)
 
 ## Installing
 
