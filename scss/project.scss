@@ -4,6 +4,7 @@ $bodyFont : sans-serif;
 $bodyTextColor : #333333;
 $bodyLinkColor : #496fba;
 @import "../bower_components/rebase-reset-scss/rebase"; // Include custom reset (uses SASS variables above)
+@import "../bower_components/breakpoint-sass/stylesheets/breakpoint"; // include Breakpoint-sass
 
 @import "../bower_components/susy/sass/susy"; // include Susy framework
 // Susy defaults - http://susydocs.oddbird.net/en/latest/settings/#global-defaults

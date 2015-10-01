@@ -14,7 +14,8 @@
     "susy": "~2.2.5",
     "jquery": "~2.1.4",
     "Old-IE-Fixes": "*",
-    "rebase-reset-scss": "https://gist.github.com/f7a197adff86558d1451.git"
+    "rebase-reset-scss": "https://gist.github.com/f7a197adff86558d1451.git",
+    "breakpoint-sass": "~2.6.1"    
   },
   "overrides": {
     "susy": {
